@@ -174,25 +174,25 @@ elseif MySys() == "linux"              " 设定windows系统中ctags程序的位
     let Tlist_Ctags_Cmd = '/usr/bin/ctags'
 endif
 "nnoremap <silent><F4> :TlistToggle<CR>
-let Tlist_Show_One_File = 1            " 不同时显示多个文件的tag，只显示当前文件的
-let Tlist_Use_Right_Window = 1         " 在右侧窗口中显示taglist窗口
-"let Tlist_Use_Left_Window = 1         " 在右侧窗口中显示taglist窗口
-let Tlist_File_Fold_Auto_Close=1       " 自动折叠当前非编辑文件的方法列表
-let Tlist_Auto_Open = 1
-let Tlist_Auto_Close= 1
-let Tlist_Auto_Update = 1
-let Tlist_Hightlight_Tag_On_BufEnter = 1
-let Tlist_Use_SingleClick = 1
-let Tlist_Enable_Fold_Column = 0
-let Tlist_Process_File_Always = 1
-let Tlist_Display_Prototype = 0
-let Tlist_Compact_Format = 1
-let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-let Tlist_Show_One_File = 1
-let Tlist_Exit_OnlyWindow = 1
-"let Tlist_Close_On_Select = 1
-"let Tlist_GainFocus_On_ToggleOpen=1
-let Tlist_Process_File_Always=1
+"
+"let Tlist_Show_One_File = 1            " 不同时显示多个文件的tag，只显示当前文件的
+"let Tlist_Use_Right_Window = 1         " 在右侧窗口中显示taglist窗口
+"let Tlist_File_Fold_Auto_Close=1       " 自动折叠当前非编辑文件的方法列表
+"let Tlist_Auto_Open = 1
+"let Tlist_Auto_Close= 1
+"let Tlist_Auto_Update = 1
+"let Tlist_Hightlight_Tag_On_BufEnter = 1
+"let Tlist_Use_SingleClick = 1
+"let Tlist_Enable_Fold_Column = 0
+"let Tlist_Process_File_Always = 1
+"let Tlist_Display_Prototype = 0
+"let Tlist_Compact_Format = 1
+"let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+"let Tlist_Show_One_File = 1
+"let Tlist_Exit_OnlyWindow = 1
+""let Tlist_Close_On_Select = 1
+""let Tlist_GainFocus_On_ToggleOpen=1
+"let Tlist_Process_File_Always=1
 
 
 
@@ -293,7 +293,8 @@ filetype plugin indent on
 " plugin - vcscommand.vim   对%命令进行扩展使得能在嵌套标签和语句之间跳转
 " SVN/git管理工具
 "-----------------------------------------------------------------
-
+" New  Template File
+autocmd BufNewFile *.c 0r ~/.vim/template/cconfig.c
 
 "-----------------------------------------------------------------
 " plugin – a.vim
@@ -321,9 +322,13 @@ let g:SuperTabDefaultCompletionType="context"
 map <F6> :Tlist<CR>
 map <F7> :set mouse=a<CR>
 map <C-F7> :set mouse= <CR>
-let g:tagbar_width=35
-let g:tagbar_autofocus=1
+""""""""""""""""""""""""""""""""""""""""""""""
 map <F8> :TagbarToggle<CR>
+nmap <Leader>tb :TagbarToggle<CR>
+let g:tagbar_autofocus=1
+let g:tagbar_ctags_bin='/usr/bin/ctags'
+let g:tagbar_width=40
+autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.py,*.java call tagbar#autoopen()
 """"""""""""""""""""""""""""""""""""""""""""""
 function! Mydict()
 	let expl=system('sdcv -n ' .
