@@ -218,6 +218,13 @@ endif
 "-----------------------------------------------------------------
 " F3 NERDTree 切换
 map <F3> :NERDTreeToggle<CR>
+let NERDTreeMouseMode=2 " 1:Double click Open 2:Single click Open directory Double click Open file 3:Single click Open
+let NERDTreeAutoCenter=1
+let NERDChristmasTree=1
+let NERDTreeHighlightCursorline=1
+let NERDTreeShowLineNumbers=1
+let NERDTreeShowFiles=1
+let NERDTreeShowHidden=1
 imap <F3> <ESC>:NERDTreeToggle<CR>
 autocmd vimenter * NERDTree
 wincmd w
@@ -326,6 +333,7 @@ map <C-F7> :set mouse= <CR>
 map <F8> :TagbarToggle<CR>
 nmap <Leader>tb :TagbarToggle<CR>
 let g:tagbar_autofocus=1
+let g:tagbar_singleclick=1
 let g:tagbar_ctags_bin='/usr/bin/ctags'
 let g:tagbar_width=40
 autocmd BufReadPost *.cpp,*.c,*.h,*.hpp,*.cc,*.cxx,*.py,*.java call tagbar#autoopen()
