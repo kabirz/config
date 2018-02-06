@@ -17,6 +17,7 @@
 
 import os
 import ycm_core
+import platform
 
 # These are the compilation flags that will be used in case there's no
 # compilation database set (by default, one is not set).
@@ -51,6 +52,13 @@ flags = [
 '-isystem',
 '/usr/include/linux',
 ]
+
+kernel_header = '/usr/src/linux-headers-%s/' % platform.uname()[2]
+if os.path.exists(kernel_header):
+    flags.append('-isystem')
+    flags.append(kernel_header + 'include')
+    flags.append('-isystem')
+    flags.append(kernel_header + 'arch/x86/include')
 
 
 # Set this to the absolute path to the folder (NOT the file!) containing the

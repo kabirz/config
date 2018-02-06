@@ -129,15 +129,17 @@ let NERDTreeAutoCenter=1
 let NERDChristmasTree=1
 let NERDTreeHighlightCursorline=1
 let NERDTreeShowLineNumbers=1
+let NERDTreeAutoDeleteBuffer=1
 let NERDTreeShowFiles=1
-let NERDTreeShowHidden=1
-let NERDTreeQuitOnOpen=1
+" let NERDTreeShowHidden=1
+let NERDTreeIgnore=['\.pyc','\~$','\.swp', '\.o.cmd', '\.o']
 imap <F3> <ESC>:NERDTreeToggle<CR>
 autocmd vimenter * NERDTree
 wincmd w
 autocmd VimEnter * wincmd w
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary") | q | endif
-autocmd bufenter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
 
 "-----------------------------------------------------------------
 " plugin - NERD_commenter.vim   注释代码用的，
@@ -171,11 +173,9 @@ set completeopt=menuone,menu,longest
 
 """"""""""""SuperTab配置"""""""""""""""
 let g:SuperTabDefaultCompletionType="context"
-map <F6> :Tlist<CR>
 map <F7> :set mouse=a<CR>
 map <F9> :set mouse= <CR>
 """"""""""""""""""""""""""""""""""""""""""""""
-
 "########################################################################
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -214,7 +214,7 @@ let g:gitgutter_highlight_lines = 1
 nnoremap <leader>gs :GitGutterToggle<CR>
 "########################################################################
 source /code/zhp/cs/a.vim
-map <F8> :TagbarToggle<CR>
+map <F6> :TagbarToggle<CR>
 nmap <Leader>tb :TagbarToggle<CR>
 let g:tagbar_autofocus=1
 let g:tagbar_singleclick=1
@@ -237,4 +237,5 @@ function! Mydict()
 map <C-F6> :call Mydict()<CR>
 
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g'\"" | endif
-set expandtab
+set ts=4
+"set expandtab
